@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-const FormSplitBill = ({ selectedFriend }) => {
+const FormSplitBill = ({ selectedFriend, onSplitBill }) => {
   const [bill, setBill] = useState("");
   const [paidByUser, setPaidbyUser] = useState("");
   const [whoIsPaying, setWhoIsPaying] = useState("user");
@@ -10,8 +10,10 @@ const FormSplitBill = ({ selectedFriend }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!bill || !paidByFriend) return;
-    console.log("oko:");
+
+    onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
   };
 
   return (
